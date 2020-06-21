@@ -1,0 +1,7 @@
+*
+!src
+!types
+!tsconfig.json
+!package*
+!webpack.config.json
+!docker_app.js

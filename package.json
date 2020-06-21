@@ -1,0 +1,54 @@
+{
+  "version": "0.3.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint src test",
+    "prepare": "tsdx build"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint src test"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "rasp-blefi",
+  "author": "sapher <sapher@sapher.com>",
+  "repository": {
+    "url": "git@github.com:sapher/rasp-blefi.git"
+  },
+  "keywords": [
+    "raspberry",
+    "pi",
+    "wifi",
+    "wpa",
+    "ble",
+    "bleno"
+  ],
+  "module": "dist/rasp-bluefi.esm.js",
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "husky": "^4.2.5",
+    "tsdx": "^0.13.2",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "@abandonware/bleno": "^0.5.1-2",
+    "winston": "^3.2.1"
+  }
+}
