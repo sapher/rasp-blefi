@@ -23,16 +23,31 @@ export default class Network extends EventEmitter {
    */
   private ifName: string;
 
+  private ssid: string = '';
+
+  // @ts-ignore
+  private status: NetworkStatus;
+
   constructor(ifName: string) {
     super();
     this.ifName = ifName;
+
+    // Watch for status changing
+    setInterval(() => {
+      logger.debug('watch for status change');
+      const hasChange = this.hasStatusChanged(this.status);
+      if (hasChange) {
+        this.emit('statusChange', this.status, this.ssid);
+      }
+    }, 1000);
   }
 
   /**
    * Get current connected SSID
    */
   async getConnectedSSID(): Promise<string> {
-    return await getCurrentSSID(this.ifName);
+    this.ssid = await getCurrentSSID(this.ifName);
+    return this.ssid;
   }
 
   /**
@@ -41,7 +56,8 @@ export default class Network extends EventEmitter {
   async getStatus(): Promise<NetworkStatus> {
     logger.info('get WIFI network connection status');
     const ssid = await this.getConnectedSSID();
-    return ssid ? NetworkStatus.connected : NetworkStatus.disconnected;
+    this.status = ssid ? NetworkStatus.connected : NetworkStatus.disconnected;
+    return this.status;
   }
 
   /**

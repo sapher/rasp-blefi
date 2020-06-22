@@ -72,8 +72,10 @@ export class NetworkConfigurator extends EventEmitter {
     bleno.on('stateChange', this.stateChange.bind(this));
     bleno.on('advertisingStart', this.advertisingStart.bind(this));
 
-    // Network events - bubble up events
-    // this.network.on('event', () => this.emit('event'));
+    // Bubble up status change
+    this.network.on('statusChange', (status, ssid) =>
+      this.emit('statusChange', status, ssid)
+    );
   }
 
   /**

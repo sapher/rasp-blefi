@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -49,6 +49,6 @@
   },
   "dependencies": {
     "@abandonware/bleno": "^0.5.1-2",
-    "winston": "^3.2.1"
+    "winston": "^3.3.2"
   }
 }

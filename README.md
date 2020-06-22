@@ -30,6 +30,12 @@ const nc = new NetworkConfigurator({
   customServices,
   ifName,
 });
+
+// Listen for network status change
+nc.on('statusChange', (status, ssid) => {
+  console.log('network status', status);
+  console.log('network ssid', ssid);
+});
 ```
 
 With the custom services you can inject user defined BLE services. You can follow the @abandonware/bleno project to understand how to create custom services, charactistics and descriptors.
